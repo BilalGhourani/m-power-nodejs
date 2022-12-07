@@ -11,14 +11,22 @@ exports.create = (req, res) => {
 
     // Create a Car
     const car = new Car({
-        title: req.body.title,
-        description: req.body.description,
-        firstPlateNumber: req.body.firstPlateNumber,
-        secondPlateNumber: req.body.secondPlateNumber
+        name: req.body.name,// BMW
+        type: req.body.type,// X6
+        color: req.body.color,// Brown
+        model: req.body.model,// 2016
+        plateFirstNumber: req.body.plateFirstNumber,// 81
+        plateSecondNumber: req.body.plateSecondNumber,// 123456
+        currentKM: req.body.currentKM,// 650000
+        nextKM: req.body.nextKM,// 655000
+        dateOfChanges: req.body.dateOfChanges,// 14/07/2022
+        username: req.body.username,// taha hamdan
+        phone: req.body.phone,// 96561233132
+        chassis_number: req.body.chassis_number,// 123731822
     });
 
     // Save Car in the database
-    Car.create(Car, (err, data) => {
+    Car.create(car, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
