@@ -1,28 +1,20 @@
 module.exports = app => {
-    const invoices = require("../controllers/carController.js");
+    const invoices = require("../controllers/ServiceController.js");
 
     var router = require("express").Router();
 
-    // Create a new Invoice
+    // Create a new Services
     router.post("/create", invoices.create);
 
-    // Retrieve all Invoices
-    router.get("/getAllInvoices", invoices.findAll);
+    // Retrieve all Servicess
+    router.get("/getAllServices", invoices.findAll);
 
-    // Retrieve last Invoice with first and second plate number
-    router.get("/search", invoices.lastCarWithPlateNum);
+    // Retrieve last Services with first and second plate number
+    router.get("/search", invoices.lastServiceWithPlateNum);
 
-    // Retrieve a single Invoice with id
+    // Retrieve a single Services with id
     router.get("/:id", invoices.findOne);
 
-    /*  // Update a Invoice with id
-      router.put("/:id", invoices.update);
 
-      // Delete a Invoice with id
-      router.delete("/:id", invoices.delete);
-
-      // Delete all Invoices
-      router.delete("/", invoices.deleteAll);*/
-
-    app.use('/api/invoices', router);
+    app.use('/api/services', router);
 };

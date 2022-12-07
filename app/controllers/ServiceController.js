@@ -1,6 +1,6 @@
-const Car = require("../models/carModel.js");
+const Service = require("../models/ServiceModel.js");
 
-// Create and Save a new Car
+// Create and Save a new Service
 exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
@@ -9,8 +9,8 @@ exports.create = (req, res) => {
         });
     }
 
-    // Create a Car
-    const car = new Car({
+    // Create a Service
+    const service = new Service({
         name: req.body.name,// BMW
         type: req.body.type,// X6
         color: req.body.color,// Brown
@@ -25,32 +25,32 @@ exports.create = (req, res) => {
         chassis_number: req.body.chassis_number,// 123731822
     });
 
-    // Save Car in the database
-    Car.create(car, (err, data) => {
+    // Save Service in the database
+    Service.create(service, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Cars."
+                    err.message || "Some error occurred while creating the Services."
             });
         else res.send(data);
     });
 };
 
-// Retrieve all Cars from the database (with condition).
+// Retrieve all Services from the database (with condition).
 exports.findAll = (req, res) => {
     const id = req.body.id;
 
-    Car.getAll(id, (err, data) => {
+    Service.getAll(id, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving Cars."
+                    err.message || "Some error occurred while retrieving Services."
             });
         else res.send(data);
     });
 };
 
-exports.lastCarWithPlateNum = (req, res) => {
+exports.lastServiceWithPlateNum = (req, res) => {
     var plateFirstNumber = req.query.firstPlateNumber;
     var plateSecondNumber = req.query.secondPlateNumber;
     if (!plateFirstNumber) {
@@ -73,27 +73,27 @@ exports.lastCarWithPlateNum = (req, res) => {
         return;
     }
 
-    Car.lastCarWithPlateNum(plateFirstNumber, plateSecondNumber, (err, data) => {
+    Service.lastServiceWithPlateNum(plateFirstNumber, plateSecondNumber, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving Cars."
+                    err.message || "Some error occurred while retrieving Services."
             });
         else res.send(data);
     });
 };
 
-// Find a single Car by Id
+// Find a single Service by Id
 exports.findOne = (req, res) => {
-    car.findById(req.params.id, (err, data) => {
+    Service.findById(req.params.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Not found Car with id ${req.params.id}.`
+                    message: `Not found Service with id ${req.params.id}.`
                 });
             } else {
                 res.status(500).send({
-                    message: "Error retrieving Cars with id " + req.params.id
+                    message: "Error retrieving Services with id " + req.params.id
                 });
             }
         } else res.send(data);
