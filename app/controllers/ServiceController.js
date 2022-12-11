@@ -51,8 +51,8 @@ exports.findAll = (req, res) => {
 };
 
 exports.lastServiceWithPlateNum = (req, res) => {
-    var plateFirstNumber = req.query.firstPlateNumber;
-    var plateSecondNumber = req.query.secondPlateNumber;
+    let plateFirstNumber = req.query.firstPlateNumber;
+    let plateSecondNumber = req.query.secondPlateNumber;
     if (!plateFirstNumber) {
         plateFirstNumber = req.body.firstPlateNumber;
     }
